@@ -47,6 +47,10 @@ void Timer::enableChannel(TimerStruct *timer, uint16_t channel) {
   *timer->ccer |= channel;
 }
 
+void Timer::disableChannel(TimerStruct *timer, uint16_t channel) {
+  *timer->ccer &= ~channel;
+}
+
 void Timer::setAutoReload(TimerStruct *timer, uint16_t autoreload) {
   *timer->arr = autoreload;
 }

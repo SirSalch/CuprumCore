@@ -28,7 +28,12 @@ typedef struct {
 class Pwm {
   public:
     Pwm(PwmChannelStruct *channel, uint32_t prescaler);
+	  void generate();
+	  void stopGenerate();
+    void fill(uint16_t fill);
     void generate(uint16_t fill);
+ 	  void prescaler(uint16_t prescaler);
+ 	  void setAutoReload(uint16_t autoreload);
 
     static PwmChannelStruct CH1;
     static PwmChannelStruct CH2;

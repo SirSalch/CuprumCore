@@ -26,12 +26,35 @@ Pwm::Pwm(PwmChannelStruct *channel, uint32_t prescaler) : _channel(channel) {
   Timer::setGpio(_channel->timer, _channel->gpio);
 }
 
+void Pwm::generate() {
+  Timer::setMode(_channel->timer, Timer::PWM_GENERATION, _channel->timerChannel);
+  Timer::enableChannel(_channel->timer, _channel->timerChannel);
+  Timer::start(_channel->timer);
+}
+
+void Pwm::stopGenerate() {
+  Timer::disableChannel(_channel->timer, _channel->timerChannel);
+}
+
+void Pwm::fill(uint16_t fill) {
+  Timer::setFill(_channel->timer, _channel->timerChannel, fill);
+}
+
 void Pwm::generate(uint16_t fill) {
   Timer::setFill(_channel->timer, _channel->timerChannel, fill + 1);
   Timer::setMode(_channel->timer, Timer::PWM_GENERATION, _channel->timerChannel);
   Timer::enableChannel(_channel->timer, _channel->timerChannel);
   Timer::start(_channel->timer);
 }
+
+void Pwm::prescaler(uint16_t prescaler) {
+  Timer::setPrescaler(_channel->timer, prescaler);
+}
+
+void Pwm::setAutoReload(uint16_t autoreload) {
+  Timer::setAutoReload(_channel->timer, autoreload);
+}
+
 
 PwmChannelStruct Pwm::CH1 = {
   &TIMER2,

@@ -44,6 +44,7 @@ namespace Timer {
   void setClocking(TimerStruct *timer, uint8_t state);
   void setPrescaler(TimerStruct *timer, uint32_t prescaler);
   void enableChannel(TimerStruct *timer, uint16_t channel);
+  void disableChannel(TimerStruct *timer, uint16_t channel);
   void setAutoReload(TimerStruct *timer, uint16_t autoreload);
   void setFill(TimerStruct *timer, uint16_t channel, uint16_t fill);
   void setMode(TimerStruct *timer, uint16_t mode, uint16_t cahnnel);
