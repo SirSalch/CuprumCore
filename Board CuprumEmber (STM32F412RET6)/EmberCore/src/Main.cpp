@@ -3,9 +3,12 @@
 int main(void) {
   /* Setup */
 
-
-  /* Loopd */
+  
+  /* Loop */
   while(1) {
-
+  
   }
+  
+  return 0;
 }
+/* Program weight - FLASH:1138 bytes, RAM:104 bytes */
