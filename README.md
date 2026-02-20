@@ -1,11 +1,8 @@
 # CuprumCore
 **( 🛠 In development ) CuprumCore** is an open-source hardware and software ecosystem for developing electronic devices based on STM32 microcontrollers, providing a range of proprietary boards and a software core that combines ease of coding with high performance.
 
-At the moment, the project is in the development stage, the author of the project is a simple enthusiast and will not forgive any money, instead I ask you to help in the development of the code with your ideas, found errors or new features. All who really helped the development of the project will be added to the comments of the repository files as "Edited: Your nickname".
-
-
-Example syntax:
-- Led Blink
+## Example syntax:
+#### Led Blink
  ```c++
 #include <CuprumCore.hpp>
 #include <Pin.hpp>
@@ -26,7 +23,7 @@ int main(void) {
 
 /* Program weight - FLASH:936 bytes, RAM:40 bytes */
 ```
-- Pwm generation
+#### Pwm generation
 ```c++
 #include <CuprumCore.hpp>
 #include <Pwm.hpp>
@@ -45,3 +42,35 @@ int main(void) {
 }
 /* Program weight - FLASH:1138 bytes, RAM:104 bytes */
 ```
+
+## Getting Started (Ubuntu)
+#### Dependencies
+The toolkit for working with St-Link
+  ```sh
+  sudo apt install stlink-tools
+  ```
+The compiler for ARM microcontrollers
+  ```sh
+  sudo apt install gcc-arm-none-eabi
+  ```
+#### Project
+Cloning the repository to your computer
+  ```sh
+  git clone https://github.com/SirSalch/CuprumCore.git
+  ```
+Go to the directory of the builder script
+  ```sh
+  cd <Your path to the repository>/'Board CuprumEmber (STM32F412RET6)'/EmberCore/cuprum_core/build
+  ```
+#### Launch
+Allow the script to run without superuser rights
+  ```sh
+  sudo chmod +x Build.sh
+  ```
+Run the compilation and upload the firmware to the microcontroller
+  ```sh
+  ./Build.sh
+  ```
+
+## License
+GNU General public license v3.0
