@@ -2,7 +2,8 @@
 **( 🛠 In development ) CuprumCore** is an open-source hardware and software ecosystem for developing electronic devices based on STM32 microcontrollers, providing a range of proprietary boards and a software core that combines ease of coding with high performance.
 
 ## Example syntax:
-#### Led Blink
+### > Led Blink
+![image alt](https://github.com/SirSalch/CuprumCore/blob/6a880bd9dccb2965ef258e1fd926802a23491795/Readme%20Extensions/LedBlickDemonstration.gif)
  ```c++
 #include <CuprumCore.hpp>
 #include <Pin.hpp>
@@ -20,10 +21,12 @@ int main(void) {
   }
   return 0;
 }
-
-/* Program weight - FLASH:936 bytes, RAM:40 bytes */
 ```
-#### Pwm generation
+```sh
+Program weight - FLASH:936 bytes, RAM:40 bytes 
+```
+### > Pwm generation
+![image alt](https://github.com/SirSalch/CuprumCore/blob/6a880bd9dccb2965ef258e1fd926802a23491795/Readme%20Extensions/PwmDemonstration.gif)
 ```c++
 #include <CuprumCore.hpp>
 #include <Pwm.hpp>
@@ -40,7 +43,9 @@ int main(void) {
   
   return 0;
 }
-/* Program weight - FLASH:1138 bytes, RAM:104 bytes */
+```
+```sh
+Program weight - FLASH:1138 bytes, RAM:104 bytes
 ```
 
 ## Getting Started (Ubuntu)
