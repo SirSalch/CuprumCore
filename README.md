@@ -51,6 +51,14 @@ int main(void) {
 Program weight - FLASH:1138 bytes, RAM:104 bytes
 ```
 
+## RoadMap of Project:
+Plan for the board "CuprumEmber", based on STM32F412RET6
+<br>
+P.S. It will be expanded.
+<br>
+<br>
+![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Readme%20Extensions/RoadMap.png?raw=true)
+
 ## Getting Started (Ubuntu)
 #### Dependencies
 The toolkit for working with St-Link
