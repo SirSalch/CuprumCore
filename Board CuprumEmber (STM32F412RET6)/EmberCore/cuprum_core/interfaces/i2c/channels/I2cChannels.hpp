@@ -23,6 +23,9 @@
 //# Gpio channel struct
 typedef struct {
   volatile uint32_t* RCC;
+  volatile uint32_t* DR;
+  volatile uint32_t* SR1;
+  volatile uint32_t* SR2;
   volatile uint32_t* CR1;
   volatile uint32_t* CR2;
   volatile uint32_t* CCR;

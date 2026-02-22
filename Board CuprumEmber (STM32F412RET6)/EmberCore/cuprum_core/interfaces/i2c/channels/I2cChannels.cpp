@@ -21,6 +21,9 @@
 
 I2cStruct I2C1 {
   .RCC = &RCC_APB1ENR,
+  .DR = &I2C1_DR,
+  .SR1 = &I2C1_SR1,
+  .SR2 = &I2C1_SR2,
   .CR1 = &I2C1_CR1,
   .CR2 = &I2C1_CR2,
   .CCR = &I2C1_CCR,

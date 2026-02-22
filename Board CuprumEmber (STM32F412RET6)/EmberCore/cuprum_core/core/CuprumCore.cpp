@@ -24,6 +24,6 @@ void delay(uint32_t time){
 }
 
 //# Read bit from thr register
-uint8_t readBit(volatile uint32_t *reg, uint8_t bit) {
-  return ((*reg) >> bit) & 0x01;
+uint8_t readBit(volatile uint32_t *reg, uint8_t mask) {
+  return ((*reg) & mask) != 0;
 }
