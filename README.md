@@ -25,11 +25,11 @@ int main(void) {
   return 0;
 }
 ```
-```sh
+```
 Program weight - FLASH:936 bytes, RAM:40 bytes 
 ```
 ### > Pwm generation
-![image alt](https://github.com/SirSalch/CuprumCore/blob/6a880bd9dccb2965ef258e1fd926802a23491795/Readme%20Extensions/PwmDemonstration.gif)
+![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Readme%20Extensions/PwmDemonstration.png?raw=true)
 ```c++
 #include <CuprumCore.hpp>
 #include <Pwm.hpp>
@@ -47,8 +47,28 @@ int main(void) {
   return 0;
 }
 ```
-```sh
+```
 Program weight - FLASH:1138 bytes, RAM:104 bytes
+```
+### > I2C Transmit
+![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Readme%20Extensions/I2cDemonstration.png?raw=true)
+```c++
+#include <CuprumCore.hpp>
+
+int main(void) {
+  /* Setup */
+  I2c::init(&I2C1);
+
+  /* Loop */
+  while(1) {
+    I2c::send(&I2C1, 0x27, 0x02);
+    delay(100);
+  }
+  return 0;
+}
+```
+```
+Program weight - FLASH:1356 bytes, RAM:120 bytes
 ```
 
 ## RoadMap of Project:
