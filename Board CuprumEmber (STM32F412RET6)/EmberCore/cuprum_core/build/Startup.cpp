@@ -1,3 +1,5 @@
+#include <SysTick.hpp>
+
 extern unsigned int _originInitdata;
 extern unsigned int _originData;
 extern unsigned int _endData;
@@ -29,6 +31,11 @@ void __attribute__((naked, noreturn)) resetHandler() {
   while (dst < end) {
     *dst++ = 0;
   }
+
+  //# SysTick init
+  SysTick::setLoad(0xFFFFFF);
+  SysTick::setClockingSource(SysTick::PROCESSOR_CLOCKING_SOURCE);
+  SysTick::enable();
 
   main();
 }

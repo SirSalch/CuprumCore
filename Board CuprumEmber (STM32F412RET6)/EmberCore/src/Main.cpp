@@ -3,10 +3,10 @@
 int main(void) {
   /* Setup */
 
-  
+
   /* Loop */
   while(1) {
- 
+
   }
   
   return 0;

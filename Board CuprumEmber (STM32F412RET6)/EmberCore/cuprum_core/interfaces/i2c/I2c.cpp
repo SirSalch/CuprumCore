@@ -44,12 +44,13 @@ namespace I2c {
     setup(i2c, BUS_STANDART_FREQUENCY, SCL_STANDART_FREQUENCY, TRISE_STANDART);
 
     //# Enable I2C
-    *i2c->CR1 |= I2C_ENABLE;
+    *i2c->CR1 |= I2C_ENABLE_BIT;
   }
 
   /* TODO: algorithm for sending data */
   void send(I2cStruct *i2c, uint8_t adress, uint8_t data) {
-    
+    *i2c->CR1 &= ~ACK_BIT;  // Clear ACK bit
+    *i2c->CR1 |= START_BIT; // Start I2c transmit
   }
 
   void setup(I2cStruct *i2c, uint16_t busFrequency/*mHz*/, uint16_t sclFrequency/*kHz*/, uint16_t trise/*nanoSeconds*/) {

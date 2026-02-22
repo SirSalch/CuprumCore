@@ -35,6 +35,18 @@ namespace SysTick {
     SYST_CTRL &= ~BIT_ENABLE;
   }
 
+  uint32_t getTick() {
+    return 0xFFFFFF - SYST_CVR;
+  }
+
+  void enableInterrupt() {
+    SYST_CTRL |= TICKINT_BIT;
+  }
+
+  void disableInterrupt() {
+    SYST_CTRL &= ~TICKINT_BIT;
+  }
+
   // Get count completion flag status
   uint32_t getCountFlag() {
     return SYST_CTRL & BIT_COUNT_FLAG;

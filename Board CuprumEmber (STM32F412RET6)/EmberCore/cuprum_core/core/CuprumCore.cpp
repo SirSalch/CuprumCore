@@ -18,12 +18,9 @@ Author:  _Salch_
 
 //# System waiting in milliseconds
 void delay(uint32_t time){
-  SysTick::setLoad(time * (16000000 / 1000));
+  uint32_t tickTime = time * (16000000 / 1000);
   SysTick::reset();
-  SysTick::setClockingSource(SysTick::PROCESSOR_CLOCKING_SOURCE);
-  SysTick::enable();
-  while (SysTick::getCountFlag() == 0) { /* waiting */ }
-  SysTick::reset();
+  while (SysTick::getTick() < tickTime) { /* waiting */ }
 }
 
 //# Read bit from thr register

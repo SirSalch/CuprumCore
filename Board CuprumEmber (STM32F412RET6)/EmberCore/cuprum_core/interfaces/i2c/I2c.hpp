@@ -24,7 +24,10 @@
 namespace I2c {
   enum {
     //# Masks
-    I2C_ENABLE = 0x01,
+    ACK_BIT = 0x400,
+    STOP_BIT = 0x200,
+    START_BIT = 0x100,
+    I2C_ENABLE_BIT = 0x01,
 
     //# Standart settings
     BUS_STANDART_FREQUENCY = 16/*mHz*/,
