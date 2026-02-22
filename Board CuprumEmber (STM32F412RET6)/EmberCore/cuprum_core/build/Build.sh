@@ -42,6 +42,8 @@ buildProject() {
   -I"cuprum_core/interfaces/gpio/channels" \
   -I"cuprum_core/interfaces/timer" \
   -I"cuprum_core/interfaces/timer/channels" \
+  -I"cuprum_core/interfaces/i2c" \
+  -I"cuprum_core/interfaces/i2c/channels" \
   -I"standart_libraries/pin" \
   -I"standart_libraries/pwm" \
   -T"cuprum_core/build/Linker.ld" \
@@ -53,6 +55,8 @@ buildProject() {
   cuprum_core/interfaces/gpio/channels/GpioChannels.cpp \
   cuprum_core/interfaces/timer/Timer.cpp \
   cuprum_core/interfaces/timer/channels/TimerChannels.cpp \
+  cuprum_core/interfaces/i2c/I2c.cpp \
+  cuprum_core/interfaces/i2c/channels/I2cChannels.cpp \
   standart_libraries/pin/Pin.cpp \
   standart_libraries/pwm/Pwm.cpp \
   -o Project.elf

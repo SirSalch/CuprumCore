@@ -1,15 +1,9 @@
-#ifndef _CUPRUM_CORE_H_
-#define _CUPRUM_CORE_H_
+#ifndef _I2C_CHANNELS_HPP_
+#define _I2C_CHANNELS_HPP_
 
-//# Header import
-#include <Registers.hpp>
-#include <SysTick.hpp>
+//# I2c import
 #include <Gpio.hpp>
-#include <GpioChannels.hpp>
-#include <Timer.hpp>
-#include <TimerChannels.hpp>
-#include <I2c.hpp>
-#include <I2cChannels.hpp>
+#include <stdint.h>
 
 /*
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
@@ -22,12 +16,23 @@
 
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
 
-File created: 09.02.2026
-Author: _Salch_
+ File created: 21.02.2026
+ Author: _Salch_
 */
 
-//# System functions
-void delay(uint32_t time);		                        // System waiting in milliseconds
-uint8_t readBit(volatile uint32_t *reg, uint8_t bit);   // Read bit from the register
+//# Gpio channel struct
+typedef struct {
+  volatile uint32_t* RCC;
+  volatile uint32_t* CR1;
+  volatile uint32_t* CR2;
+  volatile uint32_t* CCR;
+  volatile uint32_t* TRISE;
+  GpioStruct *sdaGpio;
+  GpioStruct *sclGpio;
+  uint32_t RCC_MASK;
+  uint32_t ALTERNATIVE_FUNCTION;
+} I2cStruct;
 
-#endif //_CUPRUM_CORE_H_
+extern I2cStruct I2C1;
+
+#endif /* _I2C_CHANNELS_HPP_ */

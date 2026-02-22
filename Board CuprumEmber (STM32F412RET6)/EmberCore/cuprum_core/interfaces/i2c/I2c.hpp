@@ -1,14 +1,9 @@
-#ifndef _CUPRUM_CORE_H_
-#define _CUPRUM_CORE_H_
+#ifndef _I2C_HPP_
+#define _I2C_HPP_
 
-//# Header import
-#include <Registers.hpp>
-#include <SysTick.hpp>
+//# Librarys import
+#include <stdint.h>
 #include <Gpio.hpp>
-#include <GpioChannels.hpp>
-#include <Timer.hpp>
-#include <TimerChannels.hpp>
-#include <I2c.hpp>
 #include <I2cChannels.hpp>
 
 /*
@@ -22,12 +17,24 @@
 
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
 
-File created: 09.02.2026
-Author: _Salch_
+ File created: 21.02.2026
+ Author: _Salch_
 */
 
-//# System functions
-void delay(uint32_t time);		                        // System waiting in milliseconds
-uint8_t readBit(volatile uint32_t *reg, uint8_t bit);   // Read bit from the register
+namespace I2c {
+  enum {
+    //# Masks
+    I2C_ENABLE = 0x01,
 
-#endif //_CUPRUM_CORE_H_
+    //# Standart settings
+    BUS_STANDART_FREQUENCY = 16/*mHz*/,
+    SCL_STANDART_FREQUENCY = 100/*kHz*/,
+    TRISE_STANDART = 1000/*nanoSeconds*/
+  };
+
+  void init(I2cStruct *i2c);
+  void send(I2cStruct *i2c, uint8_t adress, uint8_t data);
+  void setup(I2cStruct *i2c, uint16_t busFrequency/*mHz*/, uint16_t sclFrequency/*kHz*/, uint16_t trise/*nanoSeconds*/); 
+}
+
+#endif /* _I2C_HPP_ */

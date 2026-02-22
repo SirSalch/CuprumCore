@@ -82,4 +82,15 @@ Author: _Salch_
 #define TIMER2_CCR3   (*(volatile uint32_t*)0x4000003c)
 #define TIMER2_CCR4   (*(volatile uint32_t*)0x40000040)
 
+//# I2C1
+#define I2C1_CR1      (*(volatile uint32_t*)0x40005400)
+#define I2C1_CR2      (*(volatile uint32_t*)0x40005404)
+#define I2C1_OAR1     (*(volatile uint32_t*)0x40005408)
+#define I2C1_OAR2     (*(volatile uint32_t*)0x4000540c)
+#define I2C1_DR       (*(volatile uint32_t*)0x40005410)
+#define I2C1_SR1      (*(volatile uint32_t*)0x40005414)
+#define I2C1_SR2      (*(volatile uint32_t*)0x40005418)
+#define I2C1_CCR      (*(volatile uint32_t*)0x4000541c)
+#define I2C1_TRISE    (*(volatile uint32_t*)0x40005420)
+
 #endif /* _REGISTERS_HPP_ */

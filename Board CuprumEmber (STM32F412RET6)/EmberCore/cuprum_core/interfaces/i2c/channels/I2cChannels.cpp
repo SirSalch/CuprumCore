@@ -1,14 +1,7 @@
-#ifndef _CUPRUM_CORE_H_
-#define _CUPRUM_CORE_H_
+#ifndef _I2C_CHANNELS_CPP_
+#define _I2C_CHANNELS_CPP_
 
 //# Header import
-#include <Registers.hpp>
-#include <SysTick.hpp>
-#include <Gpio.hpp>
-#include <GpioChannels.hpp>
-#include <Timer.hpp>
-#include <TimerChannels.hpp>
-#include <I2c.hpp>
 #include <I2cChannels.hpp>
 
 /*
@@ -22,12 +15,20 @@
 
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
 
-File created: 09.02.2026
-Author: _Salch_
+ File created: 21.02.2026
+ Author: _Salch_
 */
 
-//# System functions
-void delay(uint32_t time);		                        // System waiting in milliseconds
-uint8_t readBit(volatile uint32_t *reg, uint8_t bit);   // Read bit from the register
+I2cStruct I2C1 {
+  .RCC = &RCC_APB1ENR,
+  .CR1 = &I2C1_CR1,
+  .CR2 = &I2C1_CR2,
+  .CCR = &I2C1_CCR,
+  .TRISE = &I2C1_TRISE,
+  .sdaGpio = &PB7,
+  .sclGpio = &PB6,
+  .RCC_MASK = 0x00200000,
+  .ALTERNATIVE_FUNCTION = Gpio::AF4
+};
 
-#endif //_CUPRUM_CORE_H_
+#endif /* _I2C_CHANNELS_CPP_ */
