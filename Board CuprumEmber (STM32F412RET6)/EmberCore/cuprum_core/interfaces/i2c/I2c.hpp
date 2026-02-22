@@ -1,7 +1,10 @@
-#ifndef _SYS_TICK_CPP_
-#define _SYS_TICK_CPP_
+#ifndef _I2C_HPP_
+#define _I2C_HPP_
 
-// Header import
+//# Librarys import
+#include <stdint.h>
+#include <Gpio.hpp>
+#include <I2cChannels.hpp>
 #include <SysTick.hpp>
 
 /*
@@ -15,53 +18,40 @@
 
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
 
-File created: 17.02.2026
-Author: _Salch_
+ File created: 21.02.2026
+ Author: _Salch_
 */
 
-namespace SysTick {
-  // Reset counter and its parameters
-  void reset() {
-    SYST_CVR = 0;   // Any write clears the counter and COUNTFLAG
-  }
+namespace I2c {
+  enum {
+    //# Masks
+    SB_MSK = 0x01,
+    ACK_MSK = 0x400,
+    TXE_MSK = 0x80,
+    ADDR_MSK = 0x02,
+    STOP_MSK = 0x200,
+    START_MSK = 0x100,
+    ACK_FAIL_MSK = 0x400,
+    I2C_ENABLE_MSK = 0x01,
 
-  // Enable counter operation
-  void enable() {
-    SYST_CTRL |= BIT_ENABLE;
-  }
+    //# Standart settings
+    TIMEOUT_STANDART = 3000,
+    BUS_STANDART_FREQUENCY = 16/*mHz*/,
+    SCL_STANDART_FREQUENCY = 100/*kHz*/,
+    TRISE_STANDART = 1000,/*nanoSeconds*/
 
-  // Disable counter operation
-  void disable() {
-    SYST_CTRL &= ~BIT_ENABLE;
-  }
+    //# Errors
+    NOT_READY_ERROR = 0x01,
+    NOT_FOUNDED_ADRESS_DEVICE = 0x01,
+    TRANSMIT_ERROR = 0x03,
 
-  uint32_t getTick() {
-    return 0xFFFFFF - SYST_CVR;
-  }
+    // Others
+    SUCCESS = 0x00,
+  };
 
-  void enableInterrupt() {
-    SYST_CTRL |= TICKINT_BIT;
-  }
-
-  void disableInterrupt() {
-    SYST_CTRL &= ~TICKINT_BIT;
-  }
-
-  // Get count completion flag status
-  uint32_t getCountFlag() {
-    return SYST_CTRL & BIT_COUNT_FLAG;
-  }
-
-  // Set reload value (maximum count)
-  void setLoad(uint32_t load) {
-    SYST_RVR = load;
-  }
-
-  // Set clock source
-  void setClockingSource(uint32_t source) {
-    if (source == AHB_CLOCKING_SOURCE) SYST_CTRL &= ~BIT_CLOCKING_SOURCE;
-    else if (source == PROCESSOR_CLOCKING_SOURCE) SYST_CTRL |= BIT_CLOCKING_SOURCE;
-  }
+  void init(I2cStruct *i2c);
+  uint8_t send(I2cStruct *i2c, uint8_t adress, uint8_t data);
+  void setup(I2cStruct *i2c, uint16_t busFrequency/*mHz*/, uint16_t sclFrequency/*kHz*/, uint16_t trise/*nanoSeconds*/);
 }
 
-#endif /* _SYS_TICK_CPP_ */
+#endif /* _I2C_HPP_ */

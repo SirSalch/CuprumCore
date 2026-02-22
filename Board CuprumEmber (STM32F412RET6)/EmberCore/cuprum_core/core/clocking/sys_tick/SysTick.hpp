@@ -23,6 +23,7 @@ namespace SysTick {
   enum {
     // Bit masks
     BIT_ENABLE          = 0x01,      // Enable counter bit
+    TICKINT_BIT         = 0x02,
     BIT_COUNT_FLAG      = 0x10000,   // Count complete flag bit
     BIT_CLOCKING_SOURCE = 0x04,      // Clock source selection bit
 
@@ -38,9 +39,13 @@ namespace SysTick {
   void reset();                             // Reset counter and its parameters
   void enable();                            // Enable counter operation
   void disable();                           // Disable counter operation
+  uint32_t getTick();      
+  void enableInterrupt();
+  void disableInterrupt();                 
   uint32_t getCountFlag();                  // Get count completion flag status
   void setLoad(uint32_t load);              // Set reload value (maximum count)
   void setClockingSource(uint32_t source);  // Set clock source
+
 }
 
 #endif /* _SYS_TICK_HPP_ */
