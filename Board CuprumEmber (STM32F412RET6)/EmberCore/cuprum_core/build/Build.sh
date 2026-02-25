@@ -48,9 +48,9 @@ buildProject() {
   -I"standart_libraries/pwm" \
   -T"cuprum_core/build/Linker.ld" \
   -Wl,-Map="Project.map" -Wl,--gc-sections \
+  src/Main.cpp \
   cuprum_core/core/CuprumCore.cpp \
   cuprum_core/core/clocking/sys_tick/SysTick.cpp \
-  src/Main.cpp cuprum_core/build/Startup.cpp \
   cuprum_core/interfaces/gpio/Gpio.cpp \
   cuprum_core/interfaces/gpio/channels/GpioChannels.cpp \
   cuprum_core/interfaces/timer/Timer.cpp \
