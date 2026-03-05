@@ -39,7 +39,7 @@ buildProject() {
   -I"cuprum_core/core/registers" \
   -I"cuprum_core/core/memory_system/" \
   -I"cuprum_core/core/clocking_system/" \
-  -I"cuprum_core/core/clocking/sys_tick" \
+  -I"cuprum_core/core/clocking_system/systick" \
   -I"cuprum_core/interfaces/gpio" \
   -I"cuprum_core/interfaces/gpio/channels" \
   -I"cuprum_core/interfaces/timer" \
@@ -54,7 +54,7 @@ buildProject() {
   cuprum_core/core/CuprumCore.cpp \
   cuprum_core/core/memory_system/MemorySystem.cpp \
   cuprum_core/core/clocking_system/ClockingSystem.cpp \
-  cuprum_core/core/clocking/sys_tick/SysTick.cpp \
+  cuprum_core/core/clocking_system/systick/SysTick.cpp \
   cuprum_core/interfaces/gpio/Gpio.cpp \
   cuprum_core/interfaces/gpio/channels/GpioChannels.cpp \
   cuprum_core/interfaces/timer/Timer.cpp \
