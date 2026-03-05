@@ -24,9 +24,16 @@ int main(void) {
   }
   return 0;
 }
+
+// Configuration clock system of the microcontroller
+void ClockingSystem::configuration() {
+  setSourceClocking(EXTERNAL_QUARTZ, 8 /*mHz*/);
+  setSystemMux(EXTERNAL);  // Connect system frequrency toexternal quartz
+}
+
 ```
 ```
-Program weight - FLASH:936 bytes, RAM:40 bytes 
+Program weight - FLASH:1026 bytes, RAM:40 bytes 
 ```
 ### > Pwm generation
 ![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Readme%20Extensions/PwmDemonstration.png?raw=true)
@@ -46,9 +53,16 @@ int main(void) {
   
   return 0;
 }
+
+// Configuration clock system of the microcontroller
+void ClockingSystem::configuration() {
+  setSourceClocking(EXTERNAL_QUARTZ, 8 /*mHz*/);
+  setSystemMux(EXTERNAL);  // Connect system frequrency toexternal quartz
+}
+
 ```
 ```
-Program weight - FLASH:1138 bytes, RAM:104 bytes
+Program weight - FLASH:1262 bytes, RAM:104 bytes
 ```
 ### > I2C Transmit
 ![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Readme%20Extensions/I2cDemonstration.png?raw=true)
@@ -57,7 +71,7 @@ Program weight - FLASH:1138 bytes, RAM:104 bytes
 
 int main(void) {
   /* Setup */
-  I2c::init(&I2C1);
+  I2c::init(&I2C1, 100/*kHz*/);
 
   /* Loop */
   while(1) {
@@ -66,9 +80,16 @@ int main(void) {
   }
   return 0;
 }
+
+// Configuration clock system of the microcontroller
+void ClockingSystem::configuration() {
+  setSourceClocking(EXTERNAL_QUARTZ, 8 /*mHz*/);
+  setSystemMux(EXTERNAL);  // Connect system frequrency toexternal quartz
+}
+
 ```
 ```
-Program weight - FLASH:1356 bytes, RAM:120 bytes
+Program weight - FLASH:1388 bytes, RAM:120 bytes
 ```
 
 ## RoadMap of Project:
