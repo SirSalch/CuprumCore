@@ -6,6 +6,7 @@
 #include <Gpio.hpp>
 #include <I2cChannels.hpp>
 #include <SysTick.hpp>
+#include <ClockingSystem.hpp>
 
 /*
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
@@ -36,9 +37,6 @@ namespace I2c {
 
     //# Standart settings
     TIMEOUT_STANDART = 3000,
-    BUS_STANDART_FREQUENCY = 16/*mHz*/,
-    SCL_STANDART_FREQUENCY = 100/*kHz*/,
-    TRISE_STANDART = 1000,/*nanoSeconds*/
 
     //# Errors
     NOT_READY_ERROR = 0x01,
@@ -49,9 +47,8 @@ namespace I2c {
     SUCCESS = 0x00,
   };
 
-  void init(I2cStruct *i2c);
+  void init(I2cStruct *i2c, uint16_t frequrency);
   uint8_t send(I2cStruct *i2c, uint8_t adress, uint8_t data);
-  void setup(I2cStruct *i2c, uint16_t busFrequency/*mHz*/, uint16_t sclFrequency/*kHz*/, uint16_t trise/*nanoSeconds*/);
 }
 
 #endif /* _I2C_HPP_ */

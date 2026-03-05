@@ -38,8 +38,8 @@ void Gpio::setPull(GpioStruct *gpio, uint8_t pull){
 }
 
 void Gpio::setClocking(uint8_t port, uint8_t state) {
+  RCC_AHB1ENR &= ~port;
   if(state == CLOCK_ENABLE) RCC_AHB1ENR |= port;
-  else if(state == CLOCK_DISABLE) RCC_AHB1ENR &= ~port;
 }
 
 void Gpio::setSpeed(GpioStruct *gpio, uint8_t speed) {
@@ -47,8 +47,8 @@ void Gpio::setSpeed(GpioStruct *gpio, uint8_t speed) {
 }
 
 void Gpio::setOutput(GpioStruct *gpio, uint8_t state) {
+  *gpio->odr &= ~(1 << gpio->number);
   if(state == HIGH) *gpio->odr |=  (1 << gpio->number);
-  else if(state == LOW) *gpio->odr &= ~(1 << gpio->number);
 }
 
 void Gpio::setOutputType(GpioStruct *gpio, uint8_t type) {

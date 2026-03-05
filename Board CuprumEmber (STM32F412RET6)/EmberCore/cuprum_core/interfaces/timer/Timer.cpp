@@ -60,7 +60,7 @@ void Timer::setFill(TimerStruct *timer, uint16_t channel, uint16_t fill) {
     case Timer::CH1: *timer->ccr1 = fill; return;
     case Timer::CH2: *timer->ccr2 = fill; return;
     case Timer::CH3: *timer->ccr3 = fill; return;
-    case Timer::CH4: *timer->ccr4 = fill; return;
+    case Timer::CH4: *timer->ccr4 = fill;
   }
 }
 
