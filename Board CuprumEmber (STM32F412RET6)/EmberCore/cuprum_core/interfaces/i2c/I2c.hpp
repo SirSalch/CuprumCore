@@ -49,6 +49,7 @@ namespace I2c {
 
   void init(I2cStruct *i2c, uint16_t frequrency);
   uint8_t send(I2cStruct *i2c, uint8_t adress, uint8_t data);
+  uint8_t sendPackage(I2cStruct *i2c, uint8_t adress, uint8_t *package, uint8_t size);
 }
 
 #endif /* _I2C_HPP_ */
