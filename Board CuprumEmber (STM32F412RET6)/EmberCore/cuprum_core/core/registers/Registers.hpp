@@ -2,7 +2,7 @@
 #define _REGISTERS_HPP_
 
 //# Library import
-#include <stdint.h>
+#include <cstdint>
 
 /*
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
@@ -23,6 +23,11 @@ Author: _Salch_
 #define SYST_CTRL     (*(volatile uint32_t*)0xE000E010)
 #define SYST_RVR      (*(volatile uint32_t*)0xE000E014)
 #define SYST_CVR      (*(volatile uint32_t*)0xE000E018)
+
+//# Clocking system
+#define RCC_CR        (*(volatile uint32_t*)0x40023800)
+#define RCC_CFGR      (*(volatile uint32_t*)0x40023808)
+#define RCC_PLLCFGR   (*(volatile uint32_t*)0x40023804)
 
 //# Bus clocking
 #define RCC_AHB1ENR   (*(volatile uint32_t*)0x40023830)

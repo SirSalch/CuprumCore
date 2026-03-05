@@ -1,21 +1,5 @@
-#ifndef _CUPRUM_CORE_H_
-#define _CUPRUM_CORE_H_
-
-//# Systems import
-#include <Registers.hpp>
+//# Header import
 #include <ClockingSystem.hpp>
-#include <MemorySystem.hpp>
-#include <SysTick.hpp>
-
-//# Drivres import
-#include <Gpio.hpp>
-#include <GpioChannels.hpp>
-#include <Timer.hpp>
-#include <TimerChannels.hpp>
-#include <I2c.hpp>
-#include <I2cChannels.hpp>
-
-extern int main();
 
 /*
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=]
@@ -28,21 +12,36 @@ extern int main();
 
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=]
 
-File created: 09.02.2026
-Author: _Salch_
+File created: 01.03.2026
+Author:  _Salch_
 */
 
-//# Functions for the compiler
-extern "C" {
-  void resetHandler(void);
+namespace ClockingSystem {
+  uint8_t sourceFrequency;
+
+  void startup() {
+    configuration();
+    SysTick::setLoad(0xFFFFFF);
+    SysTick::setClockingSource(SysTick::PROCESSOR_CLOCKING_SOURCE);
+    SysTick::enable();
+  }
+
+  // System
+  void setSystemMux(uint8_t channel) {
+    RCC_CFGR &= ~0x03;
+    RCC_CFGR |= channel;
+  }
+  void setSourceClocking(uint32_t source, uint8_t frequency) {
+    sourceFrequency = frequency;
+    RCC_CR &= ~SOURCE_MSK;
+    RCC_CR |= source;
+  }
+
+  // PLL
+  void setupPLL(uint8_t inputDivider, uint8_t multiplier, uint8_t outputDivider, uint8_t source) {
+    RCC_CR &= ~PLL_ON_MSK;  // Disable PLL
+    sourceFrequency = sourceFrequency / inputDivider * multiplier / outputDivider;
+    RCC_PLLCFGR = (inputDivider) | (multiplier << 6) | ((outputDivider / 2 - 1) << 16) | (source << 22);
+    RCC_CR |= PLL_ON_MSK;   // Enable PLL
+  }
 }
-
-namespace Core {
-  void deploy();
-}
-
-//# Standart system funtions
-void delay(uint32_t time);		                        // System waiting in milliseconds
-uint8_t readBit(volatile uint32_t *reg, uint8_t mask);   // Read bit from the register
-
-#endif //_CUPRUM_CORE_H_

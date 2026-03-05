@@ -1,21 +1,8 @@
-#ifndef _CUPRUM_CORE_H_
-#define _CUPRUM_CORE_H_
+#ifndef _CLOCKING_SYSTEM_H_
+#define _CLOCKING_SYSTEM_H_
 
-//# Systems import
-#include <Registers.hpp>
-#include <ClockingSystem.hpp>
-#include <MemorySystem.hpp>
+//# Subsystem import
 #include <SysTick.hpp>
-
-//# Drivres import
-#include <Gpio.hpp>
-#include <GpioChannels.hpp>
-#include <Timer.hpp>
-#include <TimerChannels.hpp>
-#include <I2c.hpp>
-#include <I2cChannels.hpp>
-
-extern int main();
 
 /*
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=]
@@ -28,21 +15,38 @@ extern int main();
 
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=]
 
-File created: 09.02.2026
-Author: _Salch_
+File created: 01.03.2026
+Author:  _Salch_
 */
 
-//# Functions for the compiler
-extern "C" {
-  void resetHandler(void);
+namespace ClockingSystem {
+  enum {
+    // Masks
+    SOURCE_MSK = 0x10001,
+    PLL_ON_MSK = 0x01 << 24,
+
+    // Clocking sources
+    INNER_SOURCE = 0x01,
+    EXTERNAL_QUARTZ = 0x10000,
+
+    // System mux channels
+    PLL = 0x02,
+    INNER = 0x00,
+    EXTERNAL = 0x01,
+  };
+
+  extern uint8_t sourceFrequency;
+
+  // Entry
+  void startup();
+  void configuration();
+
+  // System
+  void setSystemMux(uint8_t channel);
+  void setSourceClocking(uint32_t source, uint8_t frequency);
+
+  // PLL
+  void setupPLL(uint8_t inputDivider, uint8_t multiplier, uint8_t outputDivider, uint8_t source);
 }
 
-namespace Core {
-  void deploy();
-}
-
-//# Standart system funtions
-void delay(uint32_t time);		                        // System waiting in milliseconds
-uint8_t readBit(volatile uint32_t *reg, uint8_t mask);   // Read bit from the register
-
-#endif //_CUPRUM_CORE_H_
+#endif //_CLOCKING_SYSTEM_
