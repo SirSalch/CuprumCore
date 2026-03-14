@@ -1,9 +1,9 @@
-#ifndef _GPIO_CHANNELS_HPP_
-#define _GPIO_CHANNELS_HPP_
+#ifndef _UART_HPP_
+#define _UART_HPP_
 
-//# Libraries import
-#include <stdint.h>
-#include <Registers.hpp>
+// Drivers import
+#include <UartChannels.hpp>
+#include <ClockingSystem.hpp>
 
 /*
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
@@ -16,40 +16,21 @@
 
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
 
-File created: 13.01.2026
-Author: _Salch_
+ File created: 06.03.2026
+ Author: _Salch_
 */
 
-enum Port{
-  GPIOA = 0x01,
-  GPIOB = 0x02,
-  GPIOC = 0x03
-};
+namespace Uart {
+  enum {
+    // Masks
+    TXE_MSK = 0x80,
+    ENABLE_MSK = 0x2000,
+    TRANSMIT_ENABLE_MSK = 0x08,
+  };
 
-//# Gpio channel struct
-typedef struct {
-  uint8_t number;             // Pin number
-  uint8_t port;               // Port
-  volatile uint32_t* odr;     // Channel state
-  volatile uint32_t* moder;   // Mode
-  volatile uint32_t* otyper;  // Output type
-  volatile uint32_t* afrh;    // High alternative functions register
-  volatile uint32_t* afrl;    // Low alternative functions register
-  volatile uint32_t* pupdr;   // Pull register
-  volatile uint32_t* speed;   // Output speed
-} GpioStruct;
+  void init(UartStruct *uart, uint32_t baudRate);
+  void send(UartStruct *uart, uint8_t data);
+  void sendPackage(UartStruct *uart, uint8_t *package, uint8_t size);
+}
 
-//# Gpio channels
-extern GpioStruct PA0;
-extern GpioStruct PA1;
-extern GpioStruct PA2;
-extern GpioStruct PA3;
-extern GpioStruct PA5;
-extern GpioStruct PA9;
-extern GpioStruct PA10;
-
-extern GpioStruct PB2;
-extern GpioStruct PB6;
-extern GpioStruct PB7;
-
-#endif /* _GPIO_CHANNELS_HPP_ */
+#endif /* _UART_HPP_ */

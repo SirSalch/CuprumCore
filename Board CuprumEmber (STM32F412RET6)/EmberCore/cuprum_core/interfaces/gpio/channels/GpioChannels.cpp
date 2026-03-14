@@ -31,7 +31,6 @@ GpioStruct PA0 = {
   .pupdr = &GPIOA_PUPDR,
   .speed = &GPIOA_OSPEEDR
 };
-
 //# Gpio PA1
 GpioStruct PA1 = {
   .number = 1,
@@ -44,7 +43,6 @@ GpioStruct PA1 = {
   .pupdr = &GPIOA_PUPDR,
   .speed = &GPIOA_OSPEEDR
 };
-
 //# Gpio PA2
 GpioStruct PA2 = {
   .number = 2,
@@ -57,7 +55,6 @@ GpioStruct PA2 = {
   .pupdr = &GPIOA_PUPDR,
   .speed = &GPIOA_OSPEEDR
 };
-
 //# Gpio PA3
 GpioStruct PA3 = {
   .number = 3,
@@ -70,10 +67,33 @@ GpioStruct PA3 = {
   .pupdr = &GPIOA_PUPDR,
   .speed = &GPIOA_OSPEEDR
 };
-
 //# Gpio PA5
 GpioStruct PA5 = {
   .number = 5,
+  .port = Port::GPIOA,
+  .odr = &GPIOA_ODR,
+  .moder = &GPIOA_MODER,
+  .otyper = &GPIOA_OTYPER,
+  .afrh = &GPIOA_AFRH,
+  .afrl = &GPIOA_AFRL,
+  .pupdr = &GPIOA_PUPDR,
+  .speed = &GPIOA_OSPEEDR
+};
+//# Gpio PA9
+GpioStruct PA9 = {
+  .number = 9,
+  .port = Port::GPIOA,
+  .odr = &GPIOA_ODR,
+  .moder = &GPIOA_MODER,
+  .otyper = &GPIOA_OTYPER,
+  .afrh = &GPIOA_AFRH,
+  .afrl = &GPIOA_AFRL,
+  .pupdr = &GPIOA_PUPDR,
+  .speed = &GPIOA_OSPEEDR
+};
+//# Gpio PA10
+GpioStruct PA10 = {
+  .number = 10,
   .port = Port::GPIOA,
   .odr = &GPIOA_ODR,
   .moder = &GPIOA_MODER,
@@ -97,7 +117,6 @@ GpioStruct PB2 = {
   .pupdr = &GPIOB_PUPDR,
   .speed = &GPIOB_OSPEEDR
 };
-
 //# Gpio PB6
 GpioStruct PB6 = {
   .number = 6,
@@ -110,7 +129,6 @@ GpioStruct PB6 = {
   .pupdr = &GPIOB_PUPDR,
   .speed = &GPIOB_OSPEEDR
 };
-
 //# Gpio PB7
 GpioStruct PB7 = {
   .number = 7,

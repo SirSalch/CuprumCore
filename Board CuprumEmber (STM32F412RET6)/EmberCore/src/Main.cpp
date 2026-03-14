@@ -3,7 +3,7 @@
 // Entry point of the program
 int main(void) {
   /* Setup */
-
+  
 
   /* Loop */
   while(1) {

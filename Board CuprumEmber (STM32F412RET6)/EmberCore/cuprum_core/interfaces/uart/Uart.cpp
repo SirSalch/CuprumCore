@@ -1,9 +1,5 @@
-#ifndef _GPIO_CHANNELS_HPP_
-#define _GPIO_CHANNELS_HPP_
-
-//# Libraries import
-#include <stdint.h>
-#include <Registers.hpp>
+// Header import
+#include <Uart.hpp>
 
 /*
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
@@ -16,40 +12,36 @@
 
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═]
 
-File created: 13.01.2026
+File created: 06.03.2026
 Author: _Salch_
 */
 
-enum Port{
-  GPIOA = 0x01,
-  GPIOB = 0x02,
-  GPIOC = 0x03
-};
+namespace Uart {
+  void init(UartStruct *uart, uint32_t baudRate) {
+    RCC_APB2ENR |= 0x10;
 
-//# Gpio channel struct
-typedef struct {
-  uint8_t number;             // Pin number
-  uint8_t port;               // Port
-  volatile uint32_t* odr;     // Channel state
-  volatile uint32_t* moder;   // Mode
-  volatile uint32_t* otyper;  // Output type
-  volatile uint32_t* afrh;    // High alternative functions register
-  volatile uint32_t* afrl;    // Low alternative functions register
-  volatile uint32_t* pupdr;   // Pull register
-  volatile uint32_t* speed;   // Output speed
-} GpioStruct;
+    // Setup TX pin
+    Gpio::setClocking(uart->txGpio->port, Gpio::CLOCK_ENABLE);
+    Gpio::setMode(uart->txGpio, Gpio::ALERNATIVE_FUNCTIONAL);
+    Gpio::setSpeed(uart->txGpio, Gpio::HIGH_SPEED);
+    Gpio::setAlternativeFunction(uart->txGpio, uart->ALTERNATIVE_FUNCTION);
 
-//# Gpio channels
-extern GpioStruct PA0;
-extern GpioStruct PA1;
-extern GpioStruct PA2;
-extern GpioStruct PA3;
-extern GpioStruct PA5;
-extern GpioStruct PA9;
-extern GpioStruct PA10;
+    // Setup RX pin
+    Gpio::setClocking(uart->rxGpio->port, Gpio::CLOCK_ENABLE);
+    Gpio::setMode(uart->rxGpio, Gpio::ALERNATIVE_FUNCTIONAL);
+    Gpio::setSpeed(uart->rxGpio, Gpio::HIGH_SPEED);
+    Gpio::setAlternativeFunction(uart->rxGpio, uart->ALTERNATIVE_FUNCTION);
 
-extern GpioStruct PB2;
-extern GpioStruct PB6;
-extern GpioStruct PB7;
-
-#endif /* _GPIO_CHANNELS_HPP_ */
+    *uart->BRR = (ClockingSystem::sourceFrequency * 1000000 + baudRate / 2) / baudRate;
+    *uart->CR1 |= TRANSMIT_ENABLE_MSK | ENABLE_MSK; 
+  }
+  void send(UartStruct *uart, uint8_t data) {
+    *uart->DR = data;
+  }
+  void sendPackage(UartStruct *uart, uint8_t *package, uint8_t size) {
+    for(uint8_t i = 0; i < size; i ++) {
+      *uart->DR = package[i];
+      while (readBit(uart->SR, TXE_MSK) == 0);
+    }
+  }
+}

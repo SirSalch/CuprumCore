@@ -14,6 +14,8 @@
 #include <TimerChannels.hpp>
 #include <I2c.hpp>
 #include <I2cChannels.hpp>
+#include <Uart.hpp>
+#include <UartChannels.hpp>
 
 extern int main();
 
