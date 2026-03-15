@@ -33,15 +33,39 @@ namespace Uart {
     Gpio::setAlternativeFunction(uart->rxGpio, uart->ALTERNATIVE_FUNCTION);
 
     *uart->BRR = (ClockingSystem::sourceFrequency * 1000000 + baudRate / 2) / baudRate;
-    *uart->CR1 |= TRANSMIT_ENABLE_MSK | ENABLE_MSK; 
+    *uart->CR1 |= TRANSMIT_ENABLE_MSK | RECIVE_ENABLE_MSK | ENABLE_MSK; 
   }
-  void send(UartStruct *uart, uint8_t data) {
+
+  void sendByte(UartStruct *uart, uint8_t data) {
     *uart->DR = data;
   }
+
   void sendPackage(UartStruct *uart, uint8_t *package, uint8_t size) {
     for(uint8_t i = 0; i < size; i ++) {
       *uart->DR = package[i];
       while (readBit(uart->SR, TXE_MSK) == 0);
     }
+  }
+
+  uint8_t readPackage(UartStruct *uart, uint8_t* buffer, uint8_t size, uint16_t timeOut) {
+    while (readBit(uart->SR, RXNE_MSK) == 0) {
+      if(SysTick::getTick() > timeOut * ClockingSystem::sourceFrequency * 1000) return DATA_NOT_FOUND_ERROR;
+    }
+
+    for(uint8_t i = 0; i < size; i++) {
+      SysTick::reset();
+      while (readBit(uart->SR, RXNE_MSK) == 0) {
+        if(SysTick::getTick() > timeOut * ClockingSystem::sourceFrequency * 1000) return DATA_CATCH_ERROR;
+      }
+      buffer[i] = (uint8_t)(*uart->DR & 0xFF);
+    }
+  }
+
+  uint8_t readByte(UartStruct *uart, uint16_t timeOut) {
+    SysTick::reset();
+    while (readBit(uart->SR, RXNE_MSK) == 0) {
+      if(SysTick::getTick() > timeOut * ClockingSystem::sourceFrequency * 1000) return DATA_CATCH_ERROR;
+    }
+    return (uint8_t)(*uart->DR & 0xFF);
   }
 }
