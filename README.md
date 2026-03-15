@@ -9,28 +9,20 @@
 ![image alt](https://github.com/SirSalch/CuprumCore/blob/6a880bd9dccb2965ef258e1fd926802a23491795/Readme%20Extensions/LedBlickDemonstration.gif)
  ```c++
 #include <CuprumCore.hpp>
-#include <Pin.hpp>
 
 int main(void) {
   /* Setup */
-  Pin led(&PB2, Pin::OUTPUT);  // Configuring the PB2 pin of the microcontroller as an output
+  Pin led(&PB2, OUTPUT);  // Configuring the PB2 pin of the microcontroller as an output
   
   /* loop */
   while(1) {
-	led.set(Pin::HIGH);  // Enable led
-    delay(300);          // waiting 300 milliseconds
-    led.set(Pin::LOW);   // Disable led
-    delay(300);          // waiting 300 milliseconds
+	led.set(HIGH);  // Enable led
+    delay(300);     // waiting 300 milliseconds
+    led.set(LOW);   // Disable led
+    delay(300);     // waiting 300 milliseconds
   }
   return 0;
 }
-
-// Configuration clock system of the microcontroller
-void ClockingSystem::configuration() {
-  setSourceClocking(EXTERNAL_QUARTZ, 8 /*mHz*/);
-  setSystemMux(EXTERNAL);  // Connect system frequrency toexternal quartz
-}
-
 ```
 ```
 Program weight - FLASH:1026 bytes, RAM:40 bytes 
@@ -39,7 +31,6 @@ Program weight - FLASH:1026 bytes, RAM:40 bytes
 ![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Readme%20Extensions/PwmDemonstration.png?raw=true)
 ```c++
 #include <CuprumCore.hpp>
-#include <Pwm.hpp>
 
 int main(void) {
   /* Setup */
@@ -53,13 +44,6 @@ int main(void) {
   
   return 0;
 }
-
-// Configuration clock system of the microcontroller
-void ClockingSystem::configuration() {
-  setSourceClocking(EXTERNAL_QUARTZ, 8 /*mHz*/);
-  setSystemMux(EXTERNAL);  // Connect system frequrency toexternal quartz
-}
-
 ```
 ```
 Program weight - FLASH:1262 bytes, RAM:104 bytes
@@ -75,18 +59,11 @@ int main(void) {
 
   /* Loop */
   while(1) {
-    I2c::send(&I2C1, 0x27, 0x02);
+    I2c::send(&I2C1, 0x27 /*Adress*/, 0x02 /*Data*/);
     delay(100);
   }
   return 0;
 }
-
-// Configuration clock system of the microcontroller
-void ClockingSystem::configuration() {
-  setSourceClocking(EXTERNAL_QUARTZ, 8 /*mHz*/);
-  setSystemMux(EXTERNAL);  // Connect system frequrency toexternal quartz
-}
-
 ```
 ```
 Program weight - FLASH:1388 bytes, RAM:120 bytes
@@ -119,11 +96,11 @@ Go to the directory of the builder script
   ```sh
   cd <Your path to the repository>/'Board CuprumEmber (STM32F412RET6)'/EmberCore/cuprum_core/build
   ```
-#### Launch
 Allow the script to run without superuser rights
   ```sh
   sudo chmod +x Build.sh
   ```
+#### Launch
 Run the compilation and upload the firmware to the microcontroller
   ```sh
   ./Build.sh
