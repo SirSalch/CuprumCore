@@ -53,6 +53,7 @@ buildProject() {
   -T"cuprum_core/build/Linker.ld" \
   -Wl,-Map="Project.map" -Wl,--gc-sections \
   src/Main.cpp \
+  src/ClockConfiguration.cpp \
   cuprum_core/core/CuprumCore.cpp \
   cuprum_core/core/memory_system/MemorySystem.cpp \
   cuprum_core/core/clocking_system/ClockingSystem.cpp \

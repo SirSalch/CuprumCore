@@ -59,6 +59,7 @@ namespace Uart {
       }
       buffer[i] = (uint8_t)(*uart->DR & 0xFF);
     }
+    return SUCCESS;
   }
 
   uint8_t readByte(UartStruct *uart, uint16_t timeOut) {

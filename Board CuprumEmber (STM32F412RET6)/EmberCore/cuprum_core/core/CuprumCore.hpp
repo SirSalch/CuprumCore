@@ -17,7 +17,26 @@
 #include <Uart.hpp>
 #include <UartChannels.hpp>
 
+// Standart librarys import
+#include <Pin.hpp>
+#include <Pwm.hpp>
+
 extern int main();
+
+// Standart macros
+enum {
+  // Modes
+  OUTPUT,
+  INPUT,
+
+  // States
+  HIGH,
+  LOW,
+
+  // Operation status
+  SUCCESS,
+  ERROR,
+};
 
 /*
 [=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=═=]
