@@ -26,16 +26,16 @@ extern int main();
 // Standart macros
 enum {
   // Modes
-  OUTPUT,
-  INPUT,
+  INPUT = 0x00,
+  OUTPUT = 0x01,
 
   // States
-  HIGH,
-  LOW,
+  LOW = 0x02,
+  HIGH = 0x03,
 
-  // Operation status
-  SUCCESS,
-  ERROR,
+  // Operation outputs
+  ERROR = 0x04,
+  SUCCESS = 0x05,
 };
 
 /*

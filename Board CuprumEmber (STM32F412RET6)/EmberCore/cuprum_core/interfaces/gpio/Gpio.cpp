@@ -23,7 +23,7 @@ void Gpio::setMode(GpioStruct *gpio, uint8_t mode) {
   *gpio->moder &= ~(0x3 << (gpio->number * 2));   // Clearing the bits of the current mode
 
   switch(mode){
-    case Gpio::OUTPUT:
+    case 0x01 /* OUTPUT */ : 
       *gpio->moder |= mode << (gpio->number * 2); // Set the OUTPUT mode
       break;
     case Gpio::ALERNATIVE_FUNCTIONAL:
@@ -48,7 +48,7 @@ void Gpio::setSpeed(GpioStruct *gpio, uint8_t speed) {
 
 void Gpio::setOutput(GpioStruct *gpio, uint8_t state) {
   *gpio->odr &= ~(1 << gpio->number);
-  if(state == HIGH) *gpio->odr |=  (1 << gpio->number);
+  if(state == 0x03 /* HIGH */) *gpio->odr |=  (1 << gpio->number);
 }
 
 void Gpio::setOutputType(GpioStruct *gpio, uint8_t type) {
