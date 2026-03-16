@@ -1,12 +1,12 @@
 # CuprumCore
-![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Readme%20Extensions/%20LogoText.png?raw=true)
+![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Repository%20images/%20LogoText.png?raw=true)
 <br>
 <br>
 ( 🛠 In development ) CuprumCore is an open-source hardware and software ecosystem for developing electronic devices based on STM32 microcontrollers, providing a range of proprietary boards and a software core that combines ease of coding with high performance.
 
 ## Example syntax:
 ### > Led Blink
-![image alt](https://github.com/SirSalch/CuprumCore/blob/6a880bd9dccb2965ef258e1fd926802a23491795/Readme%20Extensions/LedBlickDemonstration.gif)
+![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Repository%20images/LedBlickDemonstration.gif?raw=true)
  ```c++
 #include <CuprumCore.hpp>
 
@@ -28,7 +28,7 @@ int main(void) {
 Program weight - FLASH:1026 bytes, RAM:40 bytes 
 ```
 ### > Pwm generation
-![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Readme%20Extensions/PwmDemonstration.png?raw=true)
+![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Repository%20images/PwmDemonstration.png?raw=true)
 ```c++
 #include <CuprumCore.hpp>
 
@@ -49,7 +49,7 @@ int main(void) {
 Program weight - FLASH:1262 bytes, RAM:104 bytes
 ```
 ### > I2C Transmit
-![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Readme%20Extensions/I2cDemonstration.png?raw=true)
+![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Repository%20images/I2cDemonstration.png?raw=true)
 ```c++
 #include <CuprumCore.hpp>
 
@@ -75,7 +75,7 @@ Plan for the board "CuprumEmber", based on STM32F412RET6
 P.S. It will be expanded.
 <br>
 <br>
-![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Readme%20Extensions/RoadMap.png?raw=true)
+![image alt](https://github.com/SirSalch/CuprumCore/blob/main/Repository%20images/RoadMap.png?raw=true)
 
 ## Getting Started (Ubuntu)
 #### Dependencies
