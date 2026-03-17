@@ -19,21 +19,20 @@ File created: 02.11.2025
 Author: _Salch_
 */
 
-void Gpio::setMode(GpioStruct *gpio, uint8_t mode) {
-  *gpio->moder &= ~(0x3 << (gpio->number * 2));   // Clearing the bits of the current mode
+bool Gpio::getInput(GpioStruct *gpio) {
+  return (bool)(*gpio->idr & 0x01 << gpio->number);
+}
 
-  switch(mode){
-    case 0x01 /* OUTPUT */ : 
-      *gpio->moder |= mode << (gpio->number * 2); // Set the OUTPUT mode
-      break;
-    case Gpio::ALERNATIVE_FUNCTIONAL:
-	  *gpio->moder |= mode << (gpio->number * 2);   // Set the Alternative functional mode
+void Gpio::setMode(GpioStruct *gpio, uint8_t mode) {
+  *gpio->moder &= ~(0x3 << (gpio->number * 2)); // Clearing the bits of the current mode
+  if(mode != 0x00/*INPUT*/) {
+    *gpio->moder |= mode << (gpio->number * 2); // Set the OUTPUT mode
   }
 }
 
 void Gpio::setPull(GpioStruct *gpio, uint8_t pull){
   *gpio->pupdr &= ~(0x3 << (gpio->number * 2));  				// Clear current pull
-  if(pull != Gpio::PULL_UP || pull != Gpio::PULL_DOWN) return;
+  if(pull != NO_PULL) return;
   *gpio->pupdr |= (pull << (gpio->number * 2));					// Set pull
 }
 

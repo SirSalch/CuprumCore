@@ -74,6 +74,7 @@ namespace Gpio {
 	AF15 = 0b1111
   };
 
+  bool getInput(GpioStruct *gpio);
   void setMode(GpioStruct *gpio, uint8_t mode);
   void setPull(GpioStruct *gpio, uint8_t pull);
   void setClocking(uint8_t port, uint8_t state);

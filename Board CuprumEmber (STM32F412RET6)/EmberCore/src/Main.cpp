@@ -3,13 +3,14 @@
 int main(void) {
   /* Setup */
   Pin led(&PB2, OUTPUT);
+  Pin button(&PB6, INPUT);
 
   /* Loop */
   while(1) {
-    led.set(HIGH);
-    delay(300);
-    led.set(LOW);
-    delay(300);
+    if(button.read())
+      led.set(HIGH);
+    else
+      led.set(LOW);
   }
   return 0;
 }

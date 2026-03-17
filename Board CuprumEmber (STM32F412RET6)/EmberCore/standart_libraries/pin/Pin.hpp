@@ -21,15 +21,9 @@ Author: _Salch_
 
 class Pin {
   public:
-    enum {
-	    LOW  = Gpio::LOW,
-      HIGH = Gpio::HIGH,
-	    INPUT = Gpio::INPUT,
-      OUTPUT = Gpio::OUTPUT,
-    };
-
     Pin(GpioStruct *initGpio, uint8_t mode);
     void set(uint8_t state);
+    bool read();
 
   private:
     GpioStruct *_gpio;

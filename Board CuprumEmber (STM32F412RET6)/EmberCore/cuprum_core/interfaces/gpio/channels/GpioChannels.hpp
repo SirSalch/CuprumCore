@@ -31,6 +31,7 @@ typedef struct {
   uint8_t number;             // Pin number
   uint8_t port;               // Port
   volatile uint32_t* odr;     // Channel state
+  volatile uint32_t* idr;     // Channel input state
   volatile uint32_t* moder;   // Mode
   volatile uint32_t* otyper;  // Output type
   volatile uint32_t* afrh;    // High alternative functions register
