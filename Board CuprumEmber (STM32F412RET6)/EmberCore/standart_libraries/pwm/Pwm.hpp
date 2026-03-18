@@ -22,7 +22,7 @@ Author: _Salch_
 typedef struct {
   TimerStruct *timer;
   uint16_t timerChannel;
-  GpioStruct *gpio;
+  const GpioPin *gpio;
 } PwmChannelStruct;
 
 class Pwm {

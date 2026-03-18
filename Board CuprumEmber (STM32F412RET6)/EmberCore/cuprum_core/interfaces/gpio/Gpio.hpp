@@ -74,14 +74,14 @@ namespace Gpio {
 	AF15 = 0b1111
   };
 
-  bool getInput(GpioStruct *gpio);
-  void setMode(GpioStruct *gpio, uint8_t mode);
-  void setPull(GpioStruct *gpio, uint8_t pull);
-  void setClocking(uint8_t port, uint8_t state);
-  void setSpeed(GpioStruct *gpio, uint8_t speed);
-  void setOutput(GpioStruct *gpio, uint8_t state);				// Output state (for mode OUTPUT)
-  void setOutputType(GpioStruct *gpio, uint8_t type);
-  void setAlternativeFunction(GpioStruct *gpio, uint32_t mask);
+  bool getInput(const GpioPin *gpio);
+  void setMode(const GpioPin *gpio, uint8_t mode);
+  void setPull(const GpioPin *gpio, uint8_t pull);
+  void setClocking(const GpioPort *port, uint8_t state);
+  void setSpeed(const GpioPin *gpio, uint8_t speed);
+  void setOutput(const GpioPin *gpio, uint8_t state);				// Output state (for mode OUTPUT)
+  void setOutputType(const GpioPin *gpio, uint8_t type);
+  void setAlternativeFunction(const GpioPin *gpio, uint32_t mask);
 }
 
 #endif /* _GPIO_HPP_ */

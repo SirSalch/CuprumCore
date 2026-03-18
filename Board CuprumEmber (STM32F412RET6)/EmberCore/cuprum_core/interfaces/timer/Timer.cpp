@@ -32,7 +32,7 @@ void Timer::start(TimerStruct *timer) {
   *timer->cr1 |= 0x01;
 }
 
-void Timer::setGpio(TimerStruct *timer, GpioStruct *gpio) {
+void Timer::setGpio(TimerStruct *timer, const GpioPin *gpio) {
   Gpio::setClocking(gpio->port, Gpio::CLOCK_ENABLE);
   Gpio::setMode(gpio, Gpio::ALERNATIVE_FUNCTIONAL);
   Gpio::setAlternativeFunction(gpio, timer->afrMask);

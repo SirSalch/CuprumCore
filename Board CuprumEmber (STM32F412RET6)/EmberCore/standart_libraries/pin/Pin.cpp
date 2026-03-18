@@ -19,7 +19,7 @@ File created: 10.02.2026
 Author: _Salch_
 */
 
-Pin::Pin(GpioStruct *initGpio, uint8_t mode) : _gpio(initGpio) {
+Pin::Pin(const GpioPin *initGpio, uint8_t mode) : _gpio(initGpio) {
   Gpio::setClocking(_gpio->port, Gpio::CLOCK_ENABLE);
   Gpio::setPull(_gpio, Gpio::PULL_UP);
   Gpio::setMode(_gpio, mode);

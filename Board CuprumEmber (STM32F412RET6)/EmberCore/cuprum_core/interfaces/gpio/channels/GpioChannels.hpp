@@ -20,37 +20,39 @@ File created: 13.01.2026
 Author: _Salch_
 */
 
-enum Port{
-  GPIOA = 0x01,
-  GPIOB = 0x02,
-  GPIOC = 0x03
+// Gpio port
+struct GpioPort{
+  uint8_t RccMask;            // Clocking enable mask
+  volatile uint32_t* ODR;     // Channel state
+  volatile uint32_t* IDR;     // Channel input state
+  volatile uint32_t* MODER;   // Mode
+  volatile uint32_t* OTYPER;  // Output type
+  volatile uint32_t* AFRH;    // High alternative functions register
+  volatile uint32_t* AFRL;    // Low alternative functions register
+  volatile uint32_t* PUPDR;   // Pull register
+  volatile uint32_t* SPEED;   // Output speed
 };
+extern const GpioPort GpioA;
+extern const GpioPort GpioB;
+extern const GpioPort GpioC;
 
-//# Gpio channel struct
-typedef struct {
-  uint8_t number;             // Pin number
-  uint8_t port;               // Port
-  volatile uint32_t* odr;     // Channel state
-  volatile uint32_t* idr;     // Channel input state
-  volatile uint32_t* moder;   // Mode
-  volatile uint32_t* otyper;  // Output type
-  volatile uint32_t* afrh;    // High alternative functions register
-  volatile uint32_t* afrl;    // Low alternative functions register
-  volatile uint32_t* pupdr;   // Pull register
-  volatile uint32_t* speed;   // Output speed
-} GpioStruct;
 
-//# Gpio channels
-extern GpioStruct PA0;
-extern GpioStruct PA1;
-extern GpioStruct PA2;
-extern GpioStruct PA3;
-extern GpioStruct PA5;
-extern GpioStruct PA9;
-extern GpioStruct PA10;
-
-extern GpioStruct PB2;
-extern GpioStruct PB6;
-extern GpioStruct PB7;
+// Gpio Pin
+struct GpioPin {
+  uint8_t number;
+  const GpioPort* port;
+};
+// Pin A
+extern const GpioPin PA0;
+extern const GpioPin PA1;
+extern const GpioPin PA2;
+extern const GpioPin PA3;
+extern const GpioPin PA5;
+extern const GpioPin PA9;
+extern const GpioPin PA10;
+// Pin B
+extern const GpioPin PB2;
+extern const GpioPin PB6;
+extern const GpioPin PB7;
 
 #endif /* _GPIO_CHANNELS_HPP_ */

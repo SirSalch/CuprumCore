@@ -19,50 +19,51 @@ File created: 02.11.2025
 Author: _Salch_
 */
 
-bool Gpio::getInput(GpioStruct *gpio) {
-  return (bool)(*gpio->idr & 0x01 << gpio->number);
+bool Gpio::getInput(const GpioPin *gpio) {
+  return (bool)(*gpio->port->IDR & (0x01 << gpio->number));
 }
 
-void Gpio::setMode(GpioStruct *gpio, uint8_t mode) {
-  *gpio->moder &= ~(0x3 << (gpio->number * 2)); // Clearing the bits of the current mode
+void Gpio::setMode(const GpioPin *gpio, uint8_t mode) {
+  *gpio->port->MODER &= ~(0x3 << (gpio->number * 2)); // Clearing the bits of the current mode
   if(mode != 0x00/*INPUT*/) {
-    *gpio->moder |= mode << (gpio->number * 2); // Set the OUTPUT mode
+    *gpio->port->MODER |= mode << (gpio->number * 2); // Set the OUTPUT mode
   }
 }
 
-void Gpio::setPull(GpioStruct *gpio, uint8_t pull){
-  *gpio->pupdr &= ~(0x3 << (gpio->number * 2));  				// Clear current pull
+void Gpio::setPull(const GpioPin *gpio, uint8_t pull){
+  *gpio->port->PUPDR &= ~(0x3 << (gpio->number * 2));  				// Clear current pull
   if(pull != NO_PULL) return;
-  *gpio->pupdr |= (pull << (gpio->number * 2));					// Set pull
+  *gpio->port->PUPDR |= (pull << (gpio->number * 2));					// Set pull
 }
 
-void Gpio::setClocking(uint8_t port, uint8_t state) {
-  RCC_AHB1ENR &= ~port;
-  if(state == CLOCK_ENABLE) RCC_AHB1ENR |= port;
+void Gpio::setClocking(const GpioPort *port, uint8_t state) {
+  RCC_AHB1ENR &= ~port->RccMask;
+  if(state == CLOCK_ENABLE) RCC_AHB1ENR |= port->RccMask;
 }
 
-void Gpio::setSpeed(GpioStruct *gpio, uint8_t speed) {
-  *gpio->speed |= speed;
+void Gpio::setSpeed(const GpioPin *gpio, uint8_t speed) {
+  *gpio->port->SPEED |= speed;
 }
 
-void Gpio::setOutput(GpioStruct *gpio, uint8_t state) {
-  *gpio->odr &= ~(1 << gpio->number);
-  if(state == 0x03 /* HIGH */) *gpio->odr |=  (1 << gpio->number);
+void Gpio::setOutput(const GpioPin *gpio, uint8_t state) {
+  *gpio->port->ODR &= ~(1 << gpio->number);
+  if(state == 0x03 /* HIGH */) *gpio->port->ODR |=  (1 << gpio->number);
 }
 
-void Gpio::setOutputType(GpioStruct *gpio, uint8_t type) {
-  *gpio->otyper &= ~type << gpio->number;	  // Clearing the bits of the current mode
-  *gpio->otyper |=  type << gpio->number;	  // Set output type
+void Gpio::setOutputType(const GpioPin *gpio, uint8_t type) {
+  *gpio->port->OTYPER &= ~type << gpio->number;	  // Clearing the bits of the current mode
+  *gpio->port->OTYPER |=  type << gpio->number;	  // Set output type
 }
 
-void Gpio::setAlternativeFunction(GpioStruct *gpio, uint32_t mask) {
-  uint32_t shift = (gpio->number % 8) * 4;  // 4 bits per pin in AFR registers
-  *gpio->afrl &= ~(0xF << shift);           // Clear previous AF
+void Gpio::setAlternativeFunction(const GpioPin *gpio, uint32_t mask) {
+  uint32_t shift = (gpio->number % 8) * 4;
   
   if (gpio->number < 8) {
-    *gpio->afrl |= (mask << shift);         // Set new AF
+    *gpio->port->AFRL &= ~(0xF << shift);
+    *gpio->port->AFRL |= (mask << shift);
   } else {
-    *gpio->afrh |= (mask << shift);
+    *gpio->port->AFRH &= ~(0xF << shift); 
+    *gpio->port->AFRH |= (mask << shift);
   }
 }
 

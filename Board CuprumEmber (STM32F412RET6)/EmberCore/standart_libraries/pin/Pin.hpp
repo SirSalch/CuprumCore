@@ -21,12 +21,12 @@ Author: _Salch_
 
 class Pin {
   public:
-    Pin(GpioStruct *initGpio, uint8_t mode);
+    Pin(const GpioPin *initGpio, uint8_t mode);
     void set(uint8_t state);
     bool read();
 
   private:
-    GpioStruct *_gpio;
+    const GpioPin *_gpio;
 };
 
 #endif /* _PIN_HPP_ */

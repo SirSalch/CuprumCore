@@ -40,7 +40,7 @@ namespace Timer {
 
   void stop(TimerStruct *timer);
   void start(TimerStruct *timer);
-  void setGpio(TimerStruct *timer, GpioStruct *gpio);
+  void setGpio(TimerStruct *timer, const GpioPin *gpio);
   void setClocking(TimerStruct *timer, uint8_t state);
   void setPrescaler(TimerStruct *timer, uint32_t prescaler);
   void enableChannel(TimerStruct *timer, uint16_t channel);

@@ -19,137 +19,55 @@ File created: 13.01.2026
 Author: _Salch_
 */
 
-//# Gpio PA0
-GpioStruct PA0 = {
-  .number = 0,
-  .port = Port::GPIOA,
-  .odr = &GPIOA_ODR,
-  .idr = &GPIOA_IDR,
-  .moder = &GPIOA_MODER,
-  .otyper = &GPIOA_OTYPER,
-  .afrh = &GPIOA_AFRH,
-  .afrl = &GPIOA_AFRL,
-  .pupdr = &GPIOA_PUPDR,
-  .speed = &GPIOA_OSPEEDR
+// Gpio port A
+const GpioPort GpioA = {
+  .RccMask = 0x01,
+  .ODR = &GPIOA_ODR,
+  .IDR = &GPIOA_IDR,
+  .MODER = &GPIOA_MODER,
+  .OTYPER = &GPIOA_OTYPER,
+  .AFRH = &GPIOA_AFRH,
+  .AFRL = &GPIOA_AFRL,
+  .PUPDR = &GPIOA_PUPDR,
+  .SPEED = &GPIOA_OSPEEDR
 };
-//# Gpio PA1
-GpioStruct PA1 = {
-  .number = 1,
-  .port = Port::GPIOA,
-  .odr = &GPIOA_ODR,
-  .idr = &GPIOA_IDR,
-  .moder = &GPIOA_MODER,
-  .otyper = &GPIOA_OTYPER,
-  .afrh = &GPIOA_AFRH,
-  .afrl = &GPIOA_AFRL,
-  .pupdr = &GPIOA_PUPDR,
-  .speed = &GPIOA_OSPEEDR
+// Gpio port B
+const GpioPort GpioB = {
+  .RccMask = 0x02,
+  .ODR = &GPIOB_ODR,
+  .IDR = &GPIOB_IDR,
+  .MODER = &GPIOB_MODER,
+  .OTYPER = &GPIOB_OTYPER,
+  .AFRH = &GPIOB_AFRH,
+  .AFRL = &GPIOB_AFRL,
+  .PUPDR = &GPIOB_PUPDR,
+  .SPEED = &GPIOB_OSPEEDR
 };
-//# Gpio PA2
-GpioStruct PA2 = {
-  .number = 2,
-  .port = Port::GPIOA,
-  .odr = &GPIOA_ODR,
-  .idr = &GPIOA_IDR,
-  .moder = &GPIOA_MODER,
-  .otyper = &GPIOA_OTYPER,
-  .afrh = &GPIOA_AFRH,
-  .afrl = &GPIOA_AFRL,
-  .pupdr = &GPIOA_PUPDR,
-  .speed = &GPIOA_OSPEEDR
-};
-//# Gpio PA3
-GpioStruct PA3 = {
-  .number = 3,
-  .port = Port::GPIOA,
-  .odr = &GPIOA_ODR,
-  .idr = &GPIOA_IDR,
-  .moder = &GPIOA_MODER,
-  .otyper = &GPIOA_OTYPER,
-  .afrh = &GPIOA_AFRH,
-  .afrl = &GPIOA_AFRL,
-  .pupdr = &GPIOA_PUPDR,
-  .speed = &GPIOA_OSPEEDR
-};
-//# Gpio PA5
-GpioStruct PA5 = {
-  .number = 5,
-  .port = Port::GPIOA,
-  .odr = &GPIOA_ODR,
-  .idr = &GPIOA_IDR,
-  .moder = &GPIOA_MODER,
-  .otyper = &GPIOA_OTYPER,
-  .afrh = &GPIOA_AFRH,
-  .afrl = &GPIOA_AFRL,
-  .pupdr = &GPIOA_PUPDR,
-  .speed = &GPIOA_OSPEEDR
-};
-//# Gpio PA9
-GpioStruct PA9 = {
-  .number = 9,
-  .port = Port::GPIOA,
-  .odr = &GPIOA_ODR,
-  .idr = &GPIOA_IDR,
-  .moder = &GPIOA_MODER,
-  .otyper = &GPIOA_OTYPER,
-  .afrh = &GPIOA_AFRH,
-  .afrl = &GPIOA_AFRL,
-  .pupdr = &GPIOA_PUPDR,
-  .speed = &GPIOA_OSPEEDR
-};
-//# Gpio PA10
-GpioStruct PA10 = {
-  .number = 10,
-  .port = Port::GPIOA,
-  .odr = &GPIOA_ODR,
-  .idr = &GPIOA_IDR,
-  .moder = &GPIOA_MODER,
-  .otyper = &GPIOA_OTYPER,
-  .afrh = &GPIOA_AFRH,
-  .afrl = &GPIOA_AFRL,
-  .pupdr = &GPIOA_PUPDR,
-  .speed = &GPIOA_OSPEEDR
+// Gpio port C
+const GpioPort GpioC = {
+  .RccMask = 0x03,
+  .ODR = &GPIOC_ODR,
+  .IDR = &GPIOC_IDR,
+  .MODER = &GPIOC_MODER,
+  .OTYPER = &GPIOC_OTYPER,
+  .AFRH = &GPIOC_AFRH,
+  .AFRL = &GPIOC_AFRL,
+  .PUPDR = &GPIOC_PUPDR,
+  .SPEED = &GPIOC_OSPEEDR
 };
 
 
-//# Gpio PB2
-GpioStruct PB2 = {
-  .number = 2,
-  .port = Port::GPIOB,
-  .odr = &GPIOB_ODR,
-  .idr = &GPIOB_IDR,
-  .moder = &GPIOB_MODER,
-  .otyper = &GPIOB_OTYPER,
-  .afrh = &GPIOB_AFRH,
-  .afrl = &GPIOB_AFRL,
-  .pupdr = &GPIOB_PUPDR,
-  .speed = &GPIOB_OSPEEDR
-};
-//# Gpio PB6
-GpioStruct PB6 = {
-  .number = 6,
-  .port = Port::GPIOB,
-  .odr = &GPIOB_ODR,
-  .idr = &GPIOB_IDR,
-  .moder = &GPIOB_MODER,
-  .otyper = &GPIOB_OTYPER,
-  .afrh = &GPIOB_AFRH,
-  .afrl = &GPIOB_AFRL,
-  .pupdr = &GPIOB_PUPDR,
-  .speed = &GPIOB_OSPEEDR
-};
-//# Gpio PB7
-GpioStruct PB7 = {
-  .number = 7,
-  .port = Port::GPIOB,
-  .odr = &GPIOB_ODR,
-  .idr = &GPIOB_IDR,
-  .moder = &GPIOB_MODER,
-  .otyper = &GPIOB_OTYPER,
-  .afrh = &GPIOB_AFRH,
-  .afrl = &GPIOB_AFRL,
-  .pupdr = &GPIOB_PUPDR,
-  .speed = &GPIOB_OSPEEDR
-};
+// Pins port A
+const GpioPin PA0  { .number = 0,  .port = &GpioA };
+const GpioPin PA1  { .number = 1,  .port = &GpioA };
+const GpioPin PA2  { .number = 2,  .port = &GpioA };
+const GpioPin PA3  { .number = 3,  .port = &GpioA };
+const GpioPin PA5  { .number = 5,  .port = &GpioA };
+const GpioPin PA9  { .number = 9,  .port = &GpioA };
+const GpioPin PA10{ .number = 10, .port = &GpioA };
+// Pins port B
+const GpioPin PB2  { .number = 2,  .port = &GpioB };
+const GpioPin PB6  { .number = 6,  .port = &GpioB };
+const GpioPin PB7  { .number = 7,  .port = &GpioB };
 
 #endif /* _GPIO_CHANNELS_CPP_ */

@@ -22,8 +22,8 @@
 */
 
 typedef struct {
-  GpioStruct *txGpio;
-  GpioStruct *rxGpio;
+  const GpioPin *txGpio;
+  const GpioPin *rxGpio;
   volatile uint32_t* BRR;
   volatile uint32_t* CR1;
   volatile uint32_t* CR2;

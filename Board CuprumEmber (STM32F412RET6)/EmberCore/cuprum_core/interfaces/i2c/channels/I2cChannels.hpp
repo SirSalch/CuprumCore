@@ -30,8 +30,8 @@ typedef struct {
   volatile uint32_t* CR2;
   volatile uint32_t* CCR;
   volatile uint32_t* TRISE;
-  GpioStruct *sdaGpio;
-  GpioStruct *sclGpio;
+  const GpioPin *sdaGpio;
+  const GpioPin *sclGpio;
   uint32_t RCC_MASK;
   uint32_t ALTERNATIVE_FUNCTION;
 } I2cStruct;
