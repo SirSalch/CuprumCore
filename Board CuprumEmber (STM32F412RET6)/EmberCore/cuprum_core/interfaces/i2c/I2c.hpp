@@ -30,9 +30,9 @@ namespace I2c {
     ACK_MSK = 0x400,
     TXE_MSK = 0x80,
     ADDR_MSK = 0x02,
+    RXNE_MSK = 0x40,
     STOP_MSK = 0x200,
     START_MSK = 0x100,
-    ACK_FAIL_MSK = 0x400,
     I2C_ENABLE_MSK = 0x01,
 
     //# Standart settings
@@ -50,6 +50,7 @@ namespace I2c {
   void init(I2cStruct *i2c, uint16_t frequrency);
   uint8_t send(I2cStruct *i2c, uint8_t adress, uint8_t data);
   uint8_t sendPackage(I2cStruct *i2c, uint8_t adress, uint8_t *package, uint8_t size);
+  uint8_t readPackage(I2cStruct *i2c, uint8_t adress, uint8_t readableRegister, uint8_t* buffer, uint8_t size);
 }
 
 #endif /* _I2C_HPP_ */

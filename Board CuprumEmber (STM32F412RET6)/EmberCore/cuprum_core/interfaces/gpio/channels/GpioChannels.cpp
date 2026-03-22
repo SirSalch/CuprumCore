@@ -64,7 +64,7 @@ const GpioPin PA2  { .number = 2,  .port = &GpioA };
 const GpioPin PA3  { .number = 3,  .port = &GpioA };
 const GpioPin PA5  { .number = 5,  .port = &GpioA };
 const GpioPin PA9  { .number = 9,  .port = &GpioA };
-const GpioPin PA10{ .number = 10, .port = &GpioA };
+const GpioPin PA10 { .number = 10, .port = &GpioA };
 // Pins port B
 const GpioPin PB2  { .number = 2,  .port = &GpioB };
 const GpioPin PB6  { .number = 6,  .port = &GpioB };
